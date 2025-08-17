@@ -63,8 +63,12 @@ blogRouter.post('/', async (c) => {
         return c.json({message:e})
     }
 })
+
+blogRouter.get('/', async () => ){
+
+}
   
-// to updat the post
+// to update the post
 blogRouter.put('/', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env

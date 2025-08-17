@@ -10,7 +10,7 @@ export const userRouter = new Hono<{
         JWT_SECRET: string
 	}
 }>();
-
+ 
 // signup
 userRouter.post('/signup', async (c) => {
 	const prisma = new PrismaClient({
