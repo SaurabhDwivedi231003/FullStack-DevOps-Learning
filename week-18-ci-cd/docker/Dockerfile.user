@@ -1,0 +1,23 @@
+FROM node:20.12.0-alpine3.19
+
+WORKDIR /usr/src/app
+
+# Copy root configs
+COPY package.json package-lock.json turbo.json tsconfig.json ./
+
+# Copy apps + packages
+COPY apps ./apps
+COPY packages ./packages
+
+# Install dependencies
+RUN npm install
+
+# Generate Prisma client 
+RUN npm run db:generate  
+
+# Build only the user-app
+RUN npm run build:user-app
+
+# Start the user-app
+CMD ["npm", "run", "start-user-app"]
+
